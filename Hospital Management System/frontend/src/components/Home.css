@@ -1,0 +1,20 @@
+.home {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .home h2 {
+    color: #007bff;
+  }
+  
+  .home p {
+    margin: 20px auto;
+    max-width: 600px;
+  }
+  
+  .home img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+  }
+  
