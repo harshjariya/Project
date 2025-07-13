@@ -1,0 +1,178 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@using System.Data
+@model (DataTable, DataTable, DataTable)
+
+@if (TempData["ToastMessage"] != null)
+{
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "2000",
+            "showEasing": "swing",
+            "hideEasing": "swing",
+            "showMethod": "slideDown",
+            "hideMethod": "slideUp"
+        }
+        toastr["@TempData["ToastType"]"]("@TempData["ToastMessage"]");
+    </script>
+}
+
+@{
+    var quiztable = Model.Item1;
+    var questiontable = Model.Item2;
+    var questionleveltable = Model.Item3;
+}
+
+@{
+    DataView view = quiztable.DefaultView;
+    view.Sort = "QuizDate DESC";
+    DataTable sortedQuizTable = view.ToTable();
+}
+
+@{
+    DataView view1 = questiontable.DefaultView;
+    view1.Sort = "Created DESC";
+    DataTable sortedQuestionTable = view1.ToTable();
+}
+
+<main class="main" id="main">
+    <!--BREADCRUMB-->
+
+    <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Admin</li>
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+        </nav>
+    </div>
+
+
+    <!--CARDS-->
+    <div class="row">
+        <div class="col-xxl-4 col-md-6">
+            <div class="card info-card quizicon">
+                <div class="card-body">
+                    <h5 class="card-title">Total Quizzes</h5>
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <i class="bi bi-card-list"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h6>@quiztable.Rows.Count</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-4 col-md-6">
+            <div class="card info-card questionicon">
+                <div class="card-body">
+                    <h5 class="card-title">Total Questions</h5>
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <i class="bi bi-question-square"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h6>@questiontable.Rows.Count</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-4 col-md-6">
+            <div class="card info-card questionlevelicon">
+                <div class="card-body">
+                    <h5 class="card-title">Total Question Levels</h5>
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <i class="bi bi-bar-chart-line"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h6>@questionleveltable.Rows.Count</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <!--QUIZ TABLE-->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Recent 10 Quizzes</h5>
+
+                    <div style="overflow-x: auto; width: 100%;">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Quiz Name</th>
+                                    <th>Total Questions</th>
+                                    <th>Quiz Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (DataRow row in sortedQuizTable.Rows.Cast<DataRow>().Take(10))
+                                {
+                                    <tr>
+                                        <td>@row["QuizID"]</td>
+                                        <td>@row["QuizName"]</td>
+                                        <td>@row["TotalQuestions"]</td>
+                                        <td>@Convert.ToDateTime(row["QuizDate"]).ToString("yyyy-MM-dd")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--QUESTION TABLE-->
+        <div class="col-lg-6">
+            <div class="card ">
+                <div class="card-body">
+                    <h5 class="card-title">Recent 10 Questions</h5>
+
+                    <div style="overflow-x: auto; width: 100%;">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">ID</th>
+                                    <th>Question</th>
+                                    <th class="text-center">Marks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (DataRow row in sortedQuestionTable.Rows.Cast<DataRow>().Take(10))
+                                {
+                                    <tr>
+                                        <td class="text-center">@row["QuestionID"]</td>
+                                        <td>@row["QuestionText"]</td>
+                                        <td class="text-center">@row["QuestionMarks"]</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

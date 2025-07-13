@@ -1,0 +1,65 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model QuizModel
+<main id="main" class="main">
+    <div class="col ">
+
+        <div 
+            class="card">
+            <div class="card-body">
+                <h5 class="card-title">Add Quiz</h5>
+
+                <!-- General Form Elements -->
+                <form method="post" asp-action="AddQuiz" asp-controller="Quiz">
+                    <input asp-for="QuizID" type="hidden" class="form-control">
+                    <div class="row mb-3">
+                        <label asp-for="QuizName" class="col-sm-2 col-form-label"><label class="text text-danger">*</label>Quiz Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" asp-for="QuizName">
+                            <span asp-validation-for="QuizName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label asp-for="TotalQuestions" class="col-sm-2 col-form-label"><label class="text text-danger">*</label>Total Questions</label>
+                        <div class="col-sm-10">
+                            <input asp-for="TotalQuestions" type="number" class="form-control" asp-for="TotalQuestions">
+                            <span asp-validation-for="TotalQuestions" class="text-danger"></span>
+                        </div>
+                    </div>
+                  
+                
+                    <div class="row mb-3">
+                        <label asp-for="QuizDate" for="inputDate" class="col-sm-2 col-form-label"><label class="text text-danger">*</label>Quiz Date</label>
+                        <div class="col-sm-10">
+                            <input asp-for="QuizDate" type="date" class="form-control">
+                            <span asp-validation-for="QuizDate" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="UserID" for="UserID" class="col-sm-3 col-form-label"><label class="text text-danger">*</label>Use Name </label>
+                        <select class="form-control" asp-for="UserID" asp-items="@(new SelectList(ViewBag.UserList, "UserID", "UserName"))">
+                            <option value="">Select Use</option>
+                        </select>
+                    </div>
+
+
+
+                    <div class="row mb-3">
+                        <div class="col">
+                            <button type="submit" class="btn btn-danger" asp-controller="Quiz" asp-action="QuizAddEdit">Save</button>
+                            <a class="btn btn-success my-3" asp-controller="Quiz" asp-action="QuizList">Cancel</a>
+                        </div>
+                    </div>
+
+                </form><!-- End General Form Elements -->
+
+            </div>
+        </div>
+
+    </div>
+
+</main>

@@ -1,0 +1,132 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Question List</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">Ques Wise Question</li>
+                <li class="breadcrumb-item active">Ques Wise Question Details</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-7">
+                        <h5 class="card-title">Quiz Wise QuestionDetails</h5>
+                    </div>
+                    <div class="col-5">
+                        <a class="btn btn-danger my-3" asp-controller="QuesWiseQuestion" asp-action="QuizWiseQuestionList">Delete Selected</a>
+                        <a class="btn btn-primary my-3" asp-controller="Question" asp-action="AddQuestion">Add Questions</a>
+                    </div>
+                    <div class="row">
+                        <div class="col-6"><p>Quiz Name: English Grammer Test</p></div>
+                        <div class="col-6"><p>Total Questions in Quiz:10</p></div>
+                    </div>
+                <!-- Table with stripped rows -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" /></th>
+                            <th>
+                                <b>Question</b>
+                            </th>
+                            <th>Option A</th>
+                            <th>Option B</th>
+                            <th>Option C</th>
+                            <th>Option D</th>
+                            <th>Correct Option</th>
+                            <th>Marks</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Who was the first president of the USA</td>
+                            <td>George washington</td>
+                            <td>Abraham Lincoln</td>
+                            <td>John Admas</td>
+                            <td>Thomas Jefferson</td>
+                            <td>A</td>
+                            <td>1</td>
+                            <td>
+                               <button type="button" class="btn btn-outline-danger m-1"><i class="bi bi-x-lg"></i>Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Who was the first president of the USA</td>
+                            <td>George washington</td>
+                            <td>Abraham Lincoln</td>
+                            <td>John Admas</td>
+                            <td>Thomas Jefferson</td>
+                            <td>A</td>
+                            <td>2</td>
+                            <td>
+                               <button type="button" class="btn btn-outline-danger m-1"><i class="bi bi-x-lg"></i>Delete</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>What is the national</td>
+                            <td>Lion</td>
+                            <td>Tiger</td>
+                            <td>Leopard</td>
+                            <td>Elephant</td>
+                            <td>B</td>
+                            <td>3</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-danger m-1"><i class="bi bi-x-lg"></i>Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Who was the first president of the USA</td>
+                            <td>George washington</td>
+                            <td>Abraham Lincoln</td>
+                            <td>John Admas</td>
+                            <td>Thomas Jefferson</td>
+                            <td>A</td>
+                            <td>2</td>
+                          
+                            <td>
+                               <button type="button" class="btn btn-outline-danger m-1"><i class="bi bi-x-lg"></i>Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Which year did world war ll end</td>
+                            <td>1942</td>
+                            <td>1945</td>
+                            <td>1948</td>
+                            <td>1950</td>
+                            <td>A</td>
+                            <td>1</td>
+                            
+                            <td>
+                                <button type="button" class="btn btn-outline-danger m-1"><i class="bi bi-x-lg"></i>Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</main><!-- End #main -->

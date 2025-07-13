@@ -1,0 +1,106 @@
+﻿@model QuestionModel
+
+
+<main id="main" class="main">
+    <div class="col ">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Add Question</h5>
+
+                <!-- General Form Elements -->
+                <form method="post" asp-action="QuestionAddEdit" asp-controller="Question">
+                    <input asp-for="QuestionID" type="hidden" class="form-control">
+                    <div class="row mb-3">
+                        <label asp-for="Question" class="col-3 col-form-label"><label class="text text-danger">*</label>Question</label>
+                        <div class="col">
+                            <input asp-for="Question" type="text" class="form-control">
+                            <span asp-validation-for="Question" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label asp-for="Question_Level"  class="col-sm-3 col-form-label"><span class="text text-danger">*</span>Question Level name </label>
+                        <div class="col-sm-8">
+                            <select class="form-control" asp-for="Question_Level" asp-items="@(new SelectList(ViewBag.QuestionLevelList, "QuestionLevelID", "Question_Level"))">
+                                <option value="">Select Question level</option>
+                            </select>
+                        </div>
+                    </div> 
+                    <div class="row mb-3">
+                        <label asp-for="OpationA" class="col-sm-3 col-form-label"><label class="text text-danger">*</label>Option A</label>
+                        <div class="col">
+                            <input asp-for="OpationA" type="text" class="form-control">
+                            <span asp-validation-for="OpationA" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label asp-for="OpationB" class="col-sm-3 col-form-label"><label class="text text-danger">*</label>Option B</label>
+                        <div class="col">
+                            <input asp-for="OpationB" type="text" class="form-control">
+                            <span asp-validation-for="OpationB" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label asp-for="OpationC" class=" col-sm-3 col-form-label"><label class="text text-danger">*</label>Option C</label>
+                        <div class="col">
+                            <input asp-for="OpationC" type="text" class="form-control">
+                            <span asp-validation-for="OpationC" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label asp-for="OpationD" class="col-sm-3 col-form-label"><label class="text text-danger">*</label>Option D</label>
+                        <div class="col">
+                            <input asp-for="OpationD" type="text" class="form-control">
+                            <span asp-validation-for="OpationD" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label asp-for="Correct_Opation" class="col-sm-3 col-form-label"><label class="text text-danger">*</label>Correct Option</label>
+                        <div class="col">
+                            <input asp-for="Correct_Opation" type="text" class="form-control">
+                            <span asp-validation-for="Correct_Opation" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label asp-for="Mark" class="col-sm-3 col-form-label"><label class="text text-danger">*</label>Marks</label>
+                        <div class="col">
+                            <input asp-for="Mark" type="number" class="form-control">
+                            <span asp-validation-for="Mark" class="text-danger"></span>
+
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <label>Is Admin:</label>
+                        <input asp-for="isActive" type="radio" name="isActive" value="true" id="activeYes">
+                        <label for="activeYes">Yes</label>
+                        <input asp-for="isActive" type="radio" name="isAdmin" value="false" id="activeNo">
+                        <label for="activeNo">No</label>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="UserID" for="UserID" class="col-sm-3 col-form-label"><label class="text text-danger">*</label>Use </label>
+                       <div class="col-sm-9">
+                        <select class="form-control" asp-for="UserID" asp-items="@(new SelectList(ViewBag.UserList, "UserID", "UserName"))">
+                            <option value="">Select Use</option>
+                        </select>
+                    </div>
+                    </div>
+
+
+                    <div class="row mb-3">
+                        <div class="col">
+                            <button class="btn btn-success my-3" type="submit" >submit</button>
+                            <a type="submit" class="btn btn-danger" asp-controller="Question" asp-action="QuestionList">Cancel</a>
+                        </div>
+                    </div>
+
+                </form><!-- End General Form Elements -->
+
+            </div>
+        </div>
+
+    </div>
+
+</main>

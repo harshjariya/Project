@@ -1,0 +1,49 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model QuestionLevelModel
+<main id="main" class="main">
+    <div class="col ">
+
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Add Question Level</h2>
+
+                <!-- General Form Elements -->
+                <form method="post" asp-controller="QuestionLevel" asp-action="QuestionLevelAddEdit">
+                    <input asp-for="QuestionLevelID" type="hidden" class="form-control">
+                    <div class="row mb-3">
+                        <label asp-for="Question_Level" class="col-3 col-form-label"><label class="text text-danger">*</label>Question Level</label>
+                        <div class="col">
+                            <input asp-for="Question_Level" class="form-control" placeholder="Enter Question Level (e.g.,Easy,Medium,Hard)">
+                            <span asp-validation-for="Question_Level" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="UserID" class="col-3 col-form-label"><label class="text text-danger">*</label>Use </label>
+                      <div class="col-sm-8">
+                        <select class="form-control" asp-for="UserID" asp-items="@(new SelectList(ViewBag.UserList, "UserID", "UserName"))">
+                            <option value="">Select User name</option>
+                        </select>
+                      </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col">
+                            <button class="btn btn-success my-3" type="submit">Submit</button>
+                            <a class="btn btn-danger my-3" asp-controller="QuestionLevel" asp-action="QuestionLevelList">Cancel</a>
+                        </div>
+                    </div>
+
+
+                </form><!-- End General Form Elements -->
+
+            </div>
+        </div>
+
+    </div>
+
+</main>

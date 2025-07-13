@@ -1,0 +1,151 @@
+﻿@model DataTable
+@using System.Data
+<main id="main" class="main">
+    <span class="text-danger">@TempData["ErrorMessage"]</span>
+    <span class="text-danger">@TempData["SuccessMessage"]</span>
+    
+    <div class="pagetitle">
+        <h1>User List</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">User</li>
+                <li class="breadcrumb-item active">User List</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body text text-primary">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title">Search</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label>User Name</label>
+                                <div class="">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label>Min Question</label>
+                                <div class="">
+                                    <input type="number" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label>Max Question</label>
+                                <div class="">
+                                    <input type="number" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label>From User Date</label>
+                                <div class="col">
+                                    <input type="date" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label>To User Date</label>
+                                <div class="col">
+                                    <input type="date" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col my-3">
+                                <a class="btn btn-success ">Search</a>
+                                <a class="btn btn-danger ">Reset</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">User List</h5>
+                            </div>
+                            <div class="col-2"> <a class="btn btn-primary my-3" asp-controller="User" asp-action="AddUser">Add User</a></div>
+                            <div class="col-2"> <a class="btn btn-primary my-3" asp-controller="User" asp-action="ExportToExcel">ExportToExcel</a></div>
+                        </div>
+
+
+
+                        <!-- Table with stripped rows -->
+                        <div class="table-responsive">
+                        <table class="table table-striped datatable">
+                            <thead>
+                                <tr>
+                            <th scope="col">User Id</th>
+                            <th scope="col">User Name</th>
+                            <th scope="col">Password</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Mobile</th>
+                            <th scope="col">IsActive</th>
+                            <th scope="col">IsAdmin</th>
+                            <th scope="col">Created</th>
+                            <th scope="col">Modified</th>
+                            <th scope="col">Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (DataRow dataRow in Model.Rows)
+                                {
+                                    <tr>
+                                        <td>@dataRow["UserId"]</td>
+                                        <td>@dataRow["UserName"]</td>
+                                        <td>@dataRow["Password"]</td>
+                                        <td>@dataRow["Email"]</td>
+                                        <td>@dataRow["Mobile"]</td>
+                                        <td>@dataRow["IsActive"]</td>
+                                        <td>@dataRow["IsAdmin"]</td>
+                                        <td>@dataRow["Created"]</td>
+                                        <td>@dataRow["Modified"]</td>
+                                        <td>
+                                            @* <button type="button" class="btn btn-outline-success m-1"><i class="bi bi-pencil-fill"></i>Edit</button> *@
+                                                <a asp-controller="User" asp-action="AddUser" asp-route-UserID="@dataRow["UserID"]" class="btn btn-primary btn-sm" style="padding: 2px 6px; font-size: 12px;">
+                                                    <i class="bi bi-pencil-fill"> Edit</i>
+                                                </a>
+                                                <a asp-controller="User" asp-action="UserDelete" asp-route-UserID="@dataRow["UserID"]" class="btn btn-outline-danger btn-xs" onclick="return confirm('Are you sure you want to delete user?');">
+                                                    <i class="bi bi-x-lg"></i>
+                                                </a>
+
+                                                @* <a asp-controller="User" asp-action="UserAddEdit" asp-route-CountryID="@dataRow["UserID"]" class="btn btn-primary btn-sm" style="padding: 2px 6px; font-size: 12px;"> *@
+                                                @*     <i class="fa fa-pencil"></i> *@
+                                                @* </a> *@
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                        </<div><!-- End Table with stripped rows -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main><!-- End #main -->

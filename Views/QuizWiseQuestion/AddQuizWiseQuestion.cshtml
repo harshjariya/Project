@@ -1,0 +1,57 @@
+﻿@model QuizWiseQuestionModel
+<main id="main" class="main flex-grow-1">
+
+    <div class="pagetitle">
+        <h1>QuizWiseQuestion</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">QuizWiseQuestion</li>
+                <li class="breadcrumb-item active">AddQuizWiseQuestion</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Add Quiz Wise Question</h5>
+            <div class="container mt-4">
+                <form method="post" asp-action="QuizWiseQuestionAddEdit" >
+
+                    <div class="row mb-3">
+                        <label asp-for="QuizID" for="UserID" class="col-sm-2 col-form-label"><label class="text text-danger">*</label>Quiz name </label>
+                        <select class="form-control" asp-for="QuizID" asp-items="@(new SelectList(ViewBag.UserList, "QuizID", "QuizName"))">
+                            <option value="">Quiz name</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="QuestionID" for="totalQuestions" class="form-label">Question ID</label>
+                        <input asp-for="QuestionID" min="0" class="form-control">
+                        <span asp-validation-for="QuestionID" class="text-danger"></span>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="UserID" for="UserID" class="col-sm-2 col-form-label"><label class="text text-danger">*</label>Use </label>
+                        <select class="form-control" asp-for="UserID" asp-items="@(new SelectList(ViewBag.UserList, "UserID", "UserName"))">
+                            <option value="">Select Use</option>
+                        </select>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col">
+                            <button class="btn btn-success my-3" type="submit" >Submit</button>
+                            <a class="btn btn-danger my-3" asp-controller="QuizWiseQuestion" asp-action="QuizWiseQuestionList">Cancel</a>
+                        </div>
+                    </div>
+
+
+                </form><!-- End General Form Elements -->
+
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
